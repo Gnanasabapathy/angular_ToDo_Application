@@ -1,0 +1,23 @@
+.navSideBar {
+    position: absolute;
+    content: '';
+    width: 300px;
+    height: calc(100% - 62px);
+    background: white;
+    z-index: 9;
+    top: 62px;
+    left: -2000px;
+    box-shadow: 4px 0px 20px rgb(0 0 0 / 10%);
+    padding: 20px;
+    transition: 0.2s all ease;
+}
+.navSideBar.active
+{
+    left: 0;
+}
+.navSideBar ul li
+{
+    display: block;
+    color: #333;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,62 @@
+<div class="taContentWrapper container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="taListWrapper">
+          <h2 class="taListTitle">Todo List</h2>
+          <div class="Todo_List">
+                <div class="todosItemAddWrapper">
+                    <i class="todosItemCheck fa fa-circle-thin"></i>
+                    <form (keydown)="keyDownFunction($event)">
+                        <input type="text" name="inputTodo" placeholder="Start typing todo ..." class="todo-input" [(ngModel)]="inputTodo" />
+                    </form>
+                </div>
+                
+                <div *ngFor="let todo of todos; let i = index ;" class="todosItem {{ (todo.completed ? 'done':'')}} " [attr.data-id]="i"  (click)="toggleActive(i)">
+                    <i [ngClass]="(todo.completed ? 'todosItemCheck fa fa-check-circle ':'todosItemCheck fa fa-circle-thin')" (click)="toggleDone(i)"  class="todosItemCheck"></i>
+                    <span class="todoItemsContent">{{todo.title}}</span>
+                    <form (keydown)="updateTodoData($event, i)">
+                        <input class="todoItemEditText" type="text" name="todoEditText" [(ngModel)]="todo.title" (ngModelChange)='updateTodo' (blur)="updateTodos(i)"/>
+                    </form>
+                        
+                    
+                    <div class="todoItemsOptionsWrapper">
+                        <span class="todoItemsEdit todoItemsOptions" (click)="editTodo(i)"><i class="fa fa-pencil"></i></span>
+                        <span class="todoItemsDelete todoItemsOptions" (click)="deleteTodo(i)"><i class="fa fa-trash-o"></i></span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+      </div>
+      <div class="col-md-5">
+        <div class="taListWrapper">
+          <h2 class="taListTitle" id="taDoneTodosTitle">Done</h2>
+          <div id="completedList">
+            <div *ngFor="let completedTodo of completedTodos; let i = index ;" class="todosItem" [attr.data-id]="i"  (click)="toggleActive(i)">
+                <i [ngClass]="(completedTodo.completed ? 'todosItemCheck fa fa-check-circle ':'todosItemCheck fa fa-circle-thin')"  class="todosItemCheck"></i>
+                <span class="todoItemsContent">{{completedTodo.title}}</span>
+                
+                   
+            </div>
+        
+        </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="taListWrapper">
+          
+        </div>
+      </div>
+    </div>
+    <div class="todosItemAddButton" (click)="showAddInput()">+</div>
+  </div>
+
+
+
+
+
+
+
+
+
